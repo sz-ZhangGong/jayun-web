@@ -10,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.Data;
 
 @Data
@@ -19,15 +22,17 @@ public class BookInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long uid;
-    @Column(name = "corpno", length = 10, unique = true, nullable = false)
+    @Column(length = 10, unique = true, nullable = false)
     private String bookNo;
     @Column(length = 30, nullable = false)
     private String shortName;
     @Column(length = 30)
     private String updateUser;
+    @UpdateTimestamp
     private Date updateTime;
     @Column(length = 30)
     private String createUser;
+    @CreationTimestamp
     private Timestamp createTime;
     @Column(length = 50)
     private String address;
